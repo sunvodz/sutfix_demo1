@@ -1,0 +1,15 @@
+.logo {
+  height:100%;
+  width: 100%;
+  pointer-events: none;
+  vertical-align: middle;
+}
+
+.header-from {
+  min-height: 150px;
+  flex-direction: column;
+  text-align: left;
+  align-items: center;
+  font-size: 62.5%;
+  color: white;
+}

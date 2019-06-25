@@ -1,0 +1,12 @@
+  .center-col {
+    flex: 1;
+    background: rgb(223, 233, 245);
+    overflow-y: scroll;
+    height: 500px;
+    padding: 50px;
+    position: relative;
+    padding-bottom: 0em;
+    padding-top: 1em;
+
+  }
+  

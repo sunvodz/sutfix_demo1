@@ -1,0 +1,18 @@
+.me {
+    text-align: right;
+    vertical-align: right;
+    align-items: right;
+    background-color: rgb(166, 171, 192);
+    border-radius: 24px;
+    }
+.you {
+    text-align: left;
+    vertical-align: left;
+    align-items: left;
+    background-color: rgb(177, 189, 145);    
+    border-radius: 24px;
+    }
+.userColor {
+    color: blue;
+    font-weight: bold;
+}

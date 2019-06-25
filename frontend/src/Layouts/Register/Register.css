@@ -1,0 +1,12 @@
+.FormControl{
+  min-width: 120;
+  max-width: 200;
+}
+
+.select {
+  position: absolute;
+  width: 30%;
+  margin: 10px 0 0 0;
+  font: 1.5rem cursive;
+  min-height: 10px;    
+}

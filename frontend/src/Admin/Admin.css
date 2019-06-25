@@ -1,0 +1,85 @@
+
+.border_b {
+  padding-top: 60px;
+  padding-bottom: 20px;
+  background-color: #FDE2A3;
+  border: 5px solid #FDE2A3;
+  color: #FDE2A3;
+  vertical-align: right;
+  text-align: right;
+  
+}
+
+.bgbody {
+  background-color: #ffffff;     
+}
+.right {
+text-align: right;
+vertical-align: right;
+align-items: right;
+}
+.tab{
+  background-color: #FDE2A3;
+  border:rgb(47, 0, 255);
+  color: rgb(93, 90, 236);
+  font-size: 25px;
+  text-align: right;
+  vertical-align: right;
+  align-items: center;
+  cursor: pointer;
+ }
+
+.bgbodys{
+    background-color: rgb(300, 255, 255);
+}
+
+.nav{
+    margin: 0;
+  position: absolute;
+  top: 10%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.nav1{
+  margin: 0;
+position: absolute;
+top: 40%;
+-ms-transform: translateY(-50%);
+transform: translateY(-50%);
+}
+
+.nav2{
+    margin: 0;
+  position: absolute;
+  top: 10%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.nav3{
+  margin: 0;
+position: absolute;
+top: 30%;
+-ms-transform: translateY(-50%);
+transform: translateY(-50%);
+}
+
+.nav4{
+  
+  margin: 0;
+  position: absolute;
+  top: 19.6%;
+  left: 55%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  }
+
+.GG{
+    width: 1px;
+}
+
+.h{
+    color: aliceblue;
+}
+
