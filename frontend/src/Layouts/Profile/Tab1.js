@@ -137,7 +137,7 @@ class Tab1 extends React.Component {
       condition: '',
       customeruid: [],
       customerall: [],
-      imageURL:[],
+      imageURL: [],
 
     }
   }
@@ -146,10 +146,9 @@ class Tab1 extends React.Component {
 
   }
 
-  nextPath=()=> {
-    this.props.history.push('/');
+  nextPath = (path) => {
+    this.props.history.push(path);
   }
-
 
   componentDidMount = async () => {
     this.setState({ isLoading: true });
@@ -345,14 +344,22 @@ class Tab1 extends React.Component {
     console.log("delete Success");
   };
 
-  getUrlImg = () =>  {
-    let storageRef = firebase.storage().ref();
-    var starsRef = storageRef.child("imgProfile/" + this.state.customerImg);
-    starsRef
-      .getDownloadURL()
-      .then(url => this.setState({ imageURL: url }));
-    console.log(this.state.imageURL);
+  getUrlImg = () => {
+    
+    if (this.state.customerImg != null){
+      let storageRef = firebase.storage().ref();
+      var starsRef = storageRef.child("imgProfile/" + this.state.customerImg);
+      starsRef
+        .getDownloadURL()
+        .then(url => this.setState({ imageURL: url }));
+      console.log('img');
+    }
+    else{
+      console.log('img null');
+    }
   }
+
+  
 
   render() {
     const { classes } = this.props;
@@ -368,24 +375,24 @@ class Tab1 extends React.Component {
         <Form>
 
           <Grid container justify="center" alignItems="center">
-          <Avatar alt="Remy Sharp" src={this.state.imageURL} className={classes.avatar} />
-          <input accept="image/*" className={classes.input} id="customerImg" type="file" />
-        </Grid>
-        <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
-        <label htmlFor="icon-button-file" >
-          <CustomUploadButton
-            color="primary"
-            className={classes.button}
-            aria-label="Upload picture"
-            component="span"
-            storageRef={firebase.storage().ref("imgProfile")}
-            onUploadStart={this.handleUploadStartimg}
-            onUploadSuccess={this.handleUploadSuccessimg}
-          >
-            <PhotoCamera />
-          </CustomUploadButton>
-        </label>
-        &nbsp; &nbsp;
+            <Avatar alt="Remy Sharp" src={this.state.imageURL} className={classes.avatar} />
+            <input accept="image/*" className={classes.input} id="customerImg" type="file" />
+          </Grid>
+          <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
+          <label htmlFor="icon-button-file" >
+            <CustomUploadButton
+              color="primary"
+              className={classes.button}
+              aria-label="Upload picture"
+              component="span"
+              storageRef={firebase.storage().ref("imgProfile")}
+              onUploadStart={this.handleUploadStartimg}
+              onUploadSuccess={this.handleUploadSuccessimg}
+            >
+              <PhotoCamera />
+            </CustomUploadButton>
+          </label>
+          &nbsp; &nbsp;
         {this.state.imageURL && <DeleteForeverIcon onClick={this.deteleimg} />}
 
           <br />
@@ -569,7 +576,8 @@ class Tab1 extends React.Component {
             variant="contained"
             color="primary"
             disableRipple
-            onClick={this.handleClick(TransitionDown)}
+            onClick={this.handleClick(TransitionDown)
+            }
           >
             Save
           </Button>

@@ -8,6 +8,11 @@ import Drawer from 'material-ui/Drawer';
 import Paper from 'material-ui/Paper';
 import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
 import MenuItem from 'material-ui/MenuItem';
+import Button from '@material-ui/core/Button';
+
+import firebase from "firebase";
+
+import { Link } from 'react-router-dom';
 
 import '../App.css';
 import Profile from '../Layouts/Profile/Profile';
@@ -75,7 +80,9 @@ class Admin extends Component {
             <div>
 
                 <div align='center' >
-                    <AppBar iconClassNameRight="muidocs-icon-navigation-expand-more" title="SUT Repair Computer" onLeftIconButtonClick={this.handleToggle} />
+                    <AppBar iconClassNameRight="muidocs-icon-navigation-expand-more" title="SUT Repair Computer" onLeftIconButtonClick={this.handleToggle} >
+                        <Button onClick={() => firebase.auth().signOut()} ><Link to={`/2`}>SignOut</Link></Button>
+                    </AppBar>
                 </div>
 
                 <Drawer
@@ -92,7 +99,7 @@ class Admin extends Component {
                 </Drawer>
 
                 <Paper style={paperStyle} zDepth={5}>
-                    <Toolbar style={{ "justifyContent": "center", background: '#00bdd3', color: '#ffffff'}} >
+                    <Toolbar style={{ "justifyContent": "center", background: '#00bdd3', color: '#ffffff' }} >
                         <ToolbarTitle text={this.state.show} />
                     </Toolbar>
                     {content}

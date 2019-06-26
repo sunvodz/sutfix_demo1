@@ -227,12 +227,19 @@ class Tap2 extends Component {
   };
 
   getUrlImg = () =>  {
-    let storageRef = firebase.storage().ref();
-    var starsRef = storageRef.child("imgProfile/" + this.state.customerImg);
-    starsRef
-      .getDownloadURL()
-      .then(url => this.setState({ img: url }));
-    console.log(this.state.img);
+
+    if (this.state.customerImg != null){
+      let storageRef = firebase.storage().ref();
+      var starsRef = storageRef.child("imgProfile/" + this.state.customerImg);
+      starsRef
+        .getDownloadURL()
+        .then(url => this.setState({ imageURL: url }));
+      console.log('img');
+    }
+    else{
+      console.log('img null');
+    }
+
   }
 
 
