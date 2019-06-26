@@ -250,7 +250,7 @@ class Tap2 extends Component {
       <div><Form>
 
       <Grid container justify="center" alignItems="center">
-      <Avatar alt="Remy Sharp" src={this.state.img} className={classes.avatar} />
+      <Avatar alt="Remy Sharp" src={this.state.imageURL} className={classes.avatar} />
     </Grid>
         <br />
         <br />
