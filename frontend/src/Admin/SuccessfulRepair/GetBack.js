@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table, FormGroup, Label, Input, CardBody } from "reactstrap";
+import { Table, FormGroup, Label, Input, CardBody,Container } from "reactstrap";
 
 import "../Admin.css";
 
@@ -20,11 +20,19 @@ class GetBack extends Component {
 
   async componentDidMount() {
     const response3 = await fetch(
-      "https://fixsut2019.herokuapp.com/allstatusSuccessfulRepair/"
+      "http://localhost:8080/allstatusSuccessfulRepair/"
     );
     const body3 = await response3.json();
     this.setState({ successfulRepair: body3, isLoading: false });
   }
+
+  async componentDidUpdate(){
+    const response3 = await fetch(
+      "http://localhost:8080/allstatusSuccessfulRepair/"
+    );
+    const body3 = await response3.json();
+    this.setState({ successfulRepair: body3, isLoading: false });
+}
 
   render() {
     const { successfulRepair, isLoading } = this.state;
@@ -33,6 +41,7 @@ class GetBack extends Component {
     }
 
     return (
+      <Container>
       <div>
         <CardBody>
           <Table hover>
@@ -69,6 +78,7 @@ class GetBack extends Component {
           </Table>
         </CardBody>
       </div>
+      </Container>
     );
   }
 }

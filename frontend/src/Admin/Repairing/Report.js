@@ -8,6 +8,7 @@ import {
   CardBody,
   Modal,
   ModalHeader,
+  Container,
   ModalBody,
   ModalFooter
 } from "reactstrap";
@@ -36,10 +37,15 @@ class Report extends Component {
   };
 
   async componentDidMount() {
-    const response3 = await fetch("https://fixsut2019.herokuapp.com/getManage/");
+    const response3 = await fetch("http://localhost:8080/getManage/");
     const body3 = await response3.json();
     this.setState({ manage: body3, isLoading: false });
   }
+  async componentDidUpdate(){
+    const response3 = await fetch("http://localhost:8080/getManage/");
+    const body3 = await response3.json();
+    this.setState({ manage: body3, isLoading: false });
+}
 
   render() {
     const { manage, isLoading, message } = this.state;
@@ -48,6 +54,7 @@ class Report extends Component {
     }
 
     return (
+      <Container>
       <CardBody>
         <Table hover>
           <thead>
@@ -88,6 +95,7 @@ class Report extends Component {
           ))}
         </Table>
       </CardBody>
+      </Container>
     );
   }
 }
@@ -155,7 +163,7 @@ class ModalExample extends Report {
   handleClick = Transition => () => {
     this.setState({ open: true, Transition });
     fetch(
-      "https://fixsut2019.herokuapp.com/newSuccessfullyRepair/" +
+      "http://localhost:8080/newSuccessfullyRepair/" +
         this.state.manageIdss +
         "/" +
         this.state.caserepair +
@@ -165,7 +173,7 @@ class ModalExample extends Report {
         method: "POST"
       }
     );
-    fetch("https://fixsut2019.herokuapp.com/putManage/" + this.state.manageIdss, {
+    fetch("http://localhost:8080/putManage/" + this.state.manageIdss, {
       method: "PUT"
     });
 

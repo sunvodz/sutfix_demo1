@@ -1,5 +1,5 @@
 import axios from "axios";
-const URL = "https://fixsut2019.herokuapp.com";
+const URL = "http://localhost:8080";
 
 class CourseDataService {
   //=================GET=======================================
@@ -34,6 +34,12 @@ class CourseDataService {
   }
   getImgAll() {
     return axios.get(`${URL}/api/files/getidImgaa`);
+  }
+  getTechnicPointss(id){
+    return axios.get(`${URL}/technicPointss/${id}`);
+  }
+  getTechnic(){
+    return axios.get(`${URL}/technic/`);
   }
 
   //=================POST=======================================

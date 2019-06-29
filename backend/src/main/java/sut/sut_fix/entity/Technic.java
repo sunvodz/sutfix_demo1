@@ -27,6 +27,7 @@ public class Technic {
     private String technicName;
 
     private String technicPhone;
+    
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "majorId")

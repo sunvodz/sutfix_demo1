@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table } from "reactstrap";
+import { Container,Table } from "reactstrap";
 import "./Follow.css";
 import firebase from "firebase";
 import Service from "../CourseDataService";
@@ -30,10 +30,12 @@ class Tep2 extends Component {
   }
   getStatusManage() {
     Service.getStatusManage(this.state.uid).then(response => {
-      console.log(response);
       this.setState({ manage: response.data, isLoading: false });
     });
   }
+  componentDidUpdate(){
+    this.getStatusManage();
+}
 
   render() {
     const { manage, isLoading } = this.state;
@@ -41,6 +43,7 @@ class Tep2 extends Component {
       return <p>Loading...</p>;
     }
     return (
+      <Container>
       <div>
         <Table hover>
           <thead>
@@ -68,6 +71,7 @@ class Tep2 extends Component {
           ))}
         </Table>
       </div>
+      </Container>
     );
   }
 }

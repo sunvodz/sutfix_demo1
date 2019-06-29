@@ -109,7 +109,7 @@ class Add extends Component {
 
   async upHistory() {
     await fetch(
-      "https://fixsut2019.herokuapp.com/uphistory/" +
+      "http://localhost:8080/uphistory/" +
         this.state.historyids +
         "/" +
         this.state.comments +

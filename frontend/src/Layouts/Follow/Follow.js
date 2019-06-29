@@ -4,7 +4,7 @@ import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepButton from "@material-ui/core/StepButton";
 import Typography from "@material-ui/core/Typography";
-import { Button} from "reactstrap";
+import {Container, Button} from "reactstrap";
 import "./Follow.css";
 
 import Tep1 from "./Tep1";
@@ -78,6 +78,7 @@ function Follow() {
   };
 
   return (
+    <Container>
     <div className={classes.root}>
       <Stepper nonLinear activeStep={activeStep}>
         {steps.map((label, index) => (
@@ -129,6 +130,7 @@ function Follow() {
         </div>
       </div>
     </div>
+    </Container>
   );
 }
 

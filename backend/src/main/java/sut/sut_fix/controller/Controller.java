@@ -16,7 +16,7 @@ import java.util.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-@CrossOrigin(origins = "https://fixsut2019.firebaseapp.com")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class Controller {
     @Autowired
@@ -106,7 +106,6 @@ public class Controller {
                 .filter((s) -> "Successfully"
                         .equals(s.getSuccessfulRepair().getManage().getRepair().getRepairStatus())
                         && Uid.equals(s.getSuccessfulRepair().getManage().getRepair().getCustomer().getCustomerUid())
-                        && "ยังไม่ให้คะแนนการซ่อม".equals(s.getPoint())
                         && "ยังไม่มีการแนะนำการซ่อม".equals(s.getHistoryComment()))
                 .collect(Collectors.toList());
     }
@@ -134,7 +133,7 @@ public class Controller {
         }
 
         newhistory.setHistoryComment("ยังไม่มีการแนะนำการซ่อม");
-        newhistory.setPoint("ยังไม่ให้คะแนนการซ่อม");
+        newhistory.setPoint(0);
 
         Date datere = new Date();
         newhistory.setHistoryDate(datere);
@@ -147,7 +146,7 @@ public class Controller {
 
     @PutMapping("/uphistory/{historyId}/{historyComment}/{point}")
     History replaceHistory(History History2, @PathVariable Long historyId, @PathVariable String historyComment,
-            @PathVariable String point) {
+            @PathVariable Integer point) {
 
         return historyRepository.findById(historyId).map(history -> {
             history.setHistoryComment(historyComment);
@@ -329,6 +328,15 @@ public class Controller {
     public Collection<Technic> technic() {
         return technicRepository.findAll().stream().collect(Collectors.toList());
     }
+
+    @GetMapping("/technicPointss/{id}")
+    public Collection<History> history3(@PathVariable Long id) {
+                return historyRepository.findAll().stream()
+                .filter((s) -> id.equals(s.getSuccessfulRepair().getManage().getTechnic().getTechnicId()))
+                .collect(Collectors.toList());
+   
+    }
+
 
     @PostMapping("/technic/{technicNumber}/{technicName}/{technicPhone}/{major}/{institute}")
     public Technic newTechnic(@PathVariable String technicNumber, @PathVariable String technicName,

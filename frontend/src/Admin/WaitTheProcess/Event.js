@@ -7,7 +7,8 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  CardBody
+  CardBody,
+  Container
 } from "reactstrap";
 
 import Card from "@material-ui/core/Card";
@@ -35,12 +36,17 @@ class Event extends Component {
     };
   }
   async componentDidMount() {
-    const response = await fetch("https://fixsut2019.herokuapp.com/allstatusRepair/");
+    const response = await fetch("http://localhost:8080/allstatusRepair/");
     const body = await response.json();
     this.setState({ repair: body, isLoading: false });
     console.log(this.state.repair);
   }
- 
+  async componentDidUpdate(){
+    const response = await fetch("http://localhost:8080/allstatusRepair/");
+    const body = await response.json();
+    this.setState({ repair: body, isLoading: false });
+  }
+  
 
   render() {
     const { repair, isLoading } = this.state;
@@ -49,6 +55,7 @@ class Event extends Component {
       return <p>Loading...</p>;
     }
     return (
+      <Container>
       <CardBody>
         <Table hover>
           <thead>
@@ -77,6 +84,7 @@ class Event extends Component {
           ))}
         </Table>
       </CardBody>
+      </Container>
     );
   }
 }
@@ -136,7 +144,7 @@ class ModalExample extends Event {
     console.log(this.state.case);
     console.log(this.state.date);
 
-    const response = await fetch("https://fixsut2019.herokuapp.com/technic/");
+    const response = await fetch("http://localhost:8080/technic/");
     const body = await response.json();
     this.setState({ technic: body, isLoading: false });
     console.log(this.state.technic);
@@ -147,7 +155,7 @@ class ModalExample extends Event {
   }
   async addManage() {
     await fetch(
-      "https://fixsut2019.herokuapp.com/newManage/" +
+      "http://localhost:8080/newManage/" +
         this.state.idre +
         "/" +
         this.state.technicIdS,
@@ -161,7 +169,7 @@ class ModalExample extends Event {
   }
 
   async upManage() {
-    await fetch("https://fixsut2019.herokuapp.com/putManage2/" + this.state.idre, {
+    await fetch("http://localhost:8080/putManage2/" + this.state.idre, {
       method: "PUT"
     });
     console.log("PUT Success");
@@ -187,6 +195,7 @@ class ModalExample extends Event {
         modal: !prevState.modal
     }));
 }
+
 
   render() {
     const { isLoading, technic, idU, date, id } = this.state;

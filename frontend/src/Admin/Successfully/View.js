@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Table } from "reactstrap";
-import { CardBody } from "reactstrap";
+import { CardBody,Container } from "reactstrap";
 import "../Admin.css";
 import Add from "./Add";
 
@@ -10,7 +10,12 @@ class View extends Component {
   };
 
   async componentDidMount() {
-    const response4 = await fetch("https://fixsut2019.herokuapp.com/history/");
+    const response4 = await fetch("http://localhost:8080/history/");
+    const body4 = await response4.json();
+    this.setState({ successfully: body4, isLoading: false });
+  }
+  async componentDidUpdate(){
+    const response4 = await fetch("http://localhost:8080/history/");
     const body4 = await response4.json();
     this.setState({ successfully: body4, isLoading: false });
   }
@@ -22,6 +27,7 @@ class View extends Component {
     }
 
     return (
+      <Container>
       <CardBody>
         <Table hover>
           <thead>
@@ -62,6 +68,7 @@ class View extends Component {
           ))}
         </Table>
       </CardBody>
+      </Container>
     );
   }
 }

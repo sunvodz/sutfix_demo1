@@ -8,7 +8,7 @@ import org.springframework.data.rest.webmvc.RepositoryRestController;
 
 @RepositoryRestController
 @EnableJpaRepositories
-@CrossOrigin(origins = "https://fixsut2019.firebaseapp.com")
+@CrossOrigin(origins = "http://localhost:3000")
 @RepositoryRestResource
 public interface CaseRepairRepository extends JpaRepository<CaseRepair, Long> {
     CaseRepair findByCaseRepairId(Long caseRepairId);

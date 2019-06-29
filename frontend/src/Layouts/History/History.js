@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table } from "reactstrap";
+import { Container,Table } from "reactstrap";
 import "./History.css";
 import Add from "./Add";
 import firebase from "firebase";
@@ -40,16 +40,18 @@ class History extends Component {
   }
   getHistory() {
     Service.getHistory(this.state.uid).then(response => {
-      console.log(response);
       this.setState({ history: response.data, isLoading: false });
     });
   }
   getHistory2() {
     Service.getHistory2(this.state.uid).then(response => {
-      console.log(response);
       this.setState({ history: response.data, isLoading: false });
     });
   }
+
+  componentDidUpdate(){
+    this.getHistory2();
+}
 
   render() {
     const { history, isLoading } = this.state;
@@ -58,6 +60,7 @@ class History extends Component {
       return <p>Loading...</p>;
     }
     return (
+      <Container>
       <div>
         <Table hover>
           <thead>
@@ -97,6 +100,7 @@ class History extends Component {
           ))}
         </Table>
       </div>
+      </Container>
     );
   }
 }

@@ -9,7 +9,7 @@ import org.springframework.data.rest.webmvc.RepositoryRestController;
 
 @RepositoryRestController
 @EnableJpaRepositories
-@CrossOrigin(origins = "https://fixsut2019.firebaseapp.com")
+@CrossOrigin(origins = "http://localhost:3000")
 @RepositoryRestResource
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
     Customer findByCusId(Long id);

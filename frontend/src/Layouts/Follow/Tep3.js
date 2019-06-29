@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Table } from "reactstrap";
+import { Button, Table,Container } from "reactstrap";
 import "./Follow.css";
 import firebase from "firebase";
 import { registerPlugin } from "react-filepond";
@@ -40,7 +40,6 @@ class Tep3 extends Component {
   }
   getStatusSuccessfulRepair() {
     Service.getStatusSuccessfulRepair(this.state.uid).then(response => {
-      console.log(response);
       this.setState({ successfulRepair: response.data, isLoading: false });
     });
   }
@@ -52,18 +51,20 @@ class Tep3 extends Component {
 
   upStatusHistory(id) {
     Service.putSuccessfully(id).then(response => {
-      this.setState({
-        message: ` Accept Successful`
-      });
       this.getStatusSuccessfulRepair();
     });
   }
+
+  componentDidUpdate(){
+    this.getStatusSuccessfulRepair();
+}
   render() {
     const { successfulRepair, isLoading } = this.state;
     if (isLoading) {
       return <p>Loading...</p>;
     }
     return (
+      <Container>
       <div>
         <Table hover>
           <thead>
@@ -119,6 +120,7 @@ class Tep3 extends Component {
           message={<span id="message-id">Successfully Confirm</span>}
         />
       </div>
+      </Container>
     );
   }
 }

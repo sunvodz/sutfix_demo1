@@ -26,7 +26,7 @@ public class History {
 
     private String historyComment;
 
-    private String point;
+    private Integer point;
 
     @JsonFormat(pattern = "yyyy-MM-dd : HH-mm" ,timezone = "GMT+7")
     private Date historyDate;

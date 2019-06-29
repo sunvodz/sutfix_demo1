@@ -111,13 +111,11 @@ class Add extends Component {
 
   getHistory() {
     Service.getHistory(this.state.uid).then(response => {
-      console.log(response);
       this.setState({ history1: response.data, isLoading: false });
     });
   }
   getHistory2() {
     Service.getHistory2(this.state.uid).then(response => {
-      console.log(response);
       this.setState({ history1: response.data, isLoading: false });
     });
   }

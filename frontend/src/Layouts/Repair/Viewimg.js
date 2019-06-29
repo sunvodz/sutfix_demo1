@@ -22,7 +22,7 @@ class Viewimg extends Component {
       idImgs: this.props.expense.fileName
     });
     console.log(this.state.idImgs);
-    fetch("https://fixsut2019.herokuapp.com/api/files/getidImgaa" + this.state.idImgs).then(
+    fetch("http://localhost:8080/api/files/getidImgaa" + this.state.idImgs).then(
       response => {
         response.blob().then(blob => {
           let url = window.URL.createObjectURL(blob);

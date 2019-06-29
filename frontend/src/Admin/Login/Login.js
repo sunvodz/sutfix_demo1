@@ -66,7 +66,7 @@ class Login extends Component {
     });
 
     const response = await fetch(
-      "https://fixsut2019.herokuapp.com/customer/"+ "1PE7yFLBvRbqiu6Y51wJruutHwY2"
+      "http://localhost:8080/customer/"+ "1PE7yFLBvRbqiu6Y51wJruutHwY2"
     );
     const body = await response.json();
     this.setState({ item: Object.assign(body)});

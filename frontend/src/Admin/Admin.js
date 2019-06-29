@@ -81,7 +81,7 @@ class Admin extends Component {
 
                 <div align='center' >
                     <AppBar iconClassNameRight="muidocs-icon-navigation-expand-more" title="SUT Repair Computer" onLeftIconButtonClick={this.handleToggle} >
-                        <Button onClick={() => firebase.auth().signOut()} ><Link to={`/2`}>SignOut</Link></Button>
+                        <Button onClick={() => firebase.auth().signOut()} ><Link to={`/`}>SignOut</Link></Button>
                     </AppBar>
                 </div>
 

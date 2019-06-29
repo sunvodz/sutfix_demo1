@@ -11,26 +11,44 @@ import {
     ModalHeader,
     ModalBody,
     ModalFooter,
-    CardBody
+    CardBody,
+    Container
 } from "reactstrap";
-
+import Detail from './DetailTec';
 import Select from '@material-ui/core/Select';
 import { MenuItem } from '@material-ui/core';
 import Slide from '@material-ui/core/Slide';
-
+import Service from '../CourseDataService';
 class User extends Component {
-
-    state = {
+    constructor(props) {
+        super(props);
+        
+        this.state = {
         isLoading: true,
         technic: []
     };
+    this.getTechnic = this.getTechnic.bind(this);
+}
 
     async componentDidMount() {
-        const response = await fetch('https://fixsut2019.herokuapp.com/technic/');
+        const response = await fetch('http://localhost:8080/technic/');
         const body = await response.json();
         this.setState({ technic: body, isLoading: false });
+        this.getTechnic();
     }
 
+    componentDidUpdate(prevProps,prevState){
+            this.getTechnic();
+      }
+
+      getTechnic = () => {
+        Service.getTechnic().then(response => {
+          this.setState({ technic: response.data});
+        });
+      }
+
+  
+    
     render() {
 
         const { technic, isLoading } = this.state;
@@ -41,7 +59,7 @@ class User extends Component {
 
         return (
 
-            <CardBody>
+            <Container>
 
                 <FormGroup>
                     <Label for="exampleName"> Search </Label>
@@ -55,13 +73,13 @@ class User extends Component {
 
                 <br />
 
-                <Table hover>
+                <Table className='table'>
 
                     <thead>
                         <tr>
-                            <th>No.</th>
+                            <th>Id</th>
                             <th>Name</th>
-                            <th>major</th>
+                            <th>Phone Number</th>
                             <td>
                                 <Add />
                             </td>
@@ -73,19 +91,25 @@ class User extends Component {
                             <tr>
                                 <th scope="row">{group.technicId}</th>
                                 <td>{group.technicName}</td>
-                                <td>{group.major.majorName}</td>
+                                <td>{group.technicPhone}</td>
 
                                 <td>
                                     <ButtonGroup>
                                         <Edit expense={group}/>
-                                       
                                     </ButtonGroup>
                                 </td>
+
+                                <td>
+                                    <ButtonGroup>
+                                        <Detail expense={group}/>
+                                    </ButtonGroup>
+                                </td>
+
                             </tr>
                         </tbody>)}
                 </Table>
 
-            </CardBody>
+            </Container>
 
 
         );
@@ -165,7 +189,7 @@ class Add extends React.Component {
 
     async handleSubmit() {
 
-        await fetch('https://fixsut2019.herokuapp.com/technic/' + this.state.number + '/' + this.state.name + '/'
+        await fetch('http://localhost:8080/technic/' + this.state.number + '/' + this.state.name + '/'
             + this.state.telephone + '/' + this.state.major + '/' + this.state.institute, {
                 method: 'POST'
             });
@@ -176,11 +200,11 @@ class Add extends React.Component {
     componentDidMount() {
         this.setState({ isLoading: true });
 
-        fetch('https://fixsut2019.herokuapp.com/major')
+        fetch('http://localhost:8080/major')
             .then(response => response.json())
             .then(data => this.setState({ groups2: data, isLoading: false }));
 
-        fetch('https://fixsut2019.herokuapp.com/institute')
+        fetch('http://localhost:8080/institute')
             .then(response => response.json())
             .then(data => this.setState({ groups: data, isLoading: false }));
     }
@@ -223,6 +247,7 @@ class Add extends React.Component {
     render() {
         const {  groups,groups2 } = this.state;
         return (
+            <Container>
             <div >
                 <Button color="success" onClick={this.toggle}>{this.props.buttonLabel} Add </Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className="nav">
@@ -328,6 +353,7 @@ class Add extends React.Component {
 
 
             </div>
+            </Container>
         );
     }
 }
@@ -364,7 +390,7 @@ class Edit extends React.Component {
     }
 
     upTec = () => {
-        fetch('https://fixsut2019.herokuapp.com/upTec/' + this.state.number +'/'
+        fetch('http://localhost:8080/upTec/' + this.state.number +'/'
         +this.state.name+'/'+this.state.phone+'/'+this.state.institute+'/'
         +this.state.major+'/'+this.state.idte, {
           method: "PUT"
@@ -380,11 +406,11 @@ class Edit extends React.Component {
     }
 
     componentDidMount() {
-        fetch('https://fixsut2019.herokuapp.com/major')
+        fetch('http://localhost:8080/major')
         .then(response => response.json())
         .then(data => this.setState({ groups2: data, isLoading: false }));
 
-    fetch('https://fixsut2019.herokuapp.com/institute')
+    fetch('http://localhost:8080/institute')
         .then(response => response.json())
         .then(data => this.setState({ groups: data, isLoading: false }));
 
